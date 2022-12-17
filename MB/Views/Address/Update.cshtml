@@ -1,0 +1,48 @@
+﻿@model MB.Data.Address
+
+<form method="post" asp-action="Update">
+    <input asp-for="Id" hidden />
+    <div class="border p-3">
+        <div class="form-group row">
+            <h2 class="text-black-50 pl-3">Update Address</h2>
+        </div>
+        <div class="col-6">
+            <label asp-for="City"></label>
+            <input asp-for="City" class="form-control" />
+            <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+        <div class="col-6">
+            <label asp-for="Street"></label>
+            <input asp-for="Street" class="form-control" />
+            <span asp-validation-for="Street" class="text-danger"></span>
+        </div>
+        <div class="col-6">
+            <label asp-for="House"></label>
+            <input asp-for="House" class="form-control" />
+            <span asp-validation-for="House" class="text-danger"></span>
+        </div>
+        <div class="col-6">
+            <label asp-for="Stops"></label>
+            <input asp-for="Stops" class="form-control" />
+            <span asp-validation-for="Stops" class="text-danger"></span>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <input type="submit" class="btn btn-info w-75" value="Update" />
+                </div>
+                <div class="col">
+                    <a asp-action="Index" class="btn btn-danger w-75">Back</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+

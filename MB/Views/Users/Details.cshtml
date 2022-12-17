@@ -1,0 +1,28 @@
+﻿@using System.Security.Claims;
+@model MB.Data.User
+@{
+    ViewData["Title"] = "Details";
+}
+<div>
+    <h4>Данные аккаунта:</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Email:
+        </dt>
+        <dd class="col-sm-10">
+            @User.Identity.Name
+        </dd>
+        <dt class="col-sm-2">
+            Роль:
+        </dt>
+        <dd class="col-sm-10">
+            @User.FindFirstValue(ClaimTypes.Role)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-sm btn-outline-info" asp-action="Edit" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Сменить email</a>
+    <a class="btn btn-sm btn-outline-info" asp-action="ChangePassword" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Сменить пароль</a>
+
+</div>

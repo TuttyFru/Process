@@ -1,0 +1,67 @@
+﻿@model IEnumerable<MB.Data.Driver>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Driver List</h2>
+        </div>
+        @if (User.IsInRole("admin") || User.IsInRole("moderator"))
+        {
+            <div class="col-6 text-right">
+                <a asp-controller="Driver" asp-action="Create" class="btn btn-primary">Create new Driver</a>
+            </div>
+        }
+    </div>
+    <br />
+
+    @if (Model.Count() > 0)
+    {
+        <div class=" container overflow-hidden">
+            <div class="row">
+                @foreach (var obj in Model)
+                {
+                    <div class="col-6">
+
+                        <div class="card p-3  my-2 border bg-light">
+                            <h4>@obj.Car.Model</h4>
+                            <div>
+                                <section>
+                                    <div class="row">
+                                        <div class="col-md-8 col-lg-3">
+                                            <div class="row">
+                                                <aside class="col-sm-6 col-md-12 p-4">
+                                                    <img src="~/images/emplty.jpg" class="img-thumbnail" alt="...">
+                                                </aside>
+                                            </div>
+                                        </div>
+                                        <main>
+                                            ФИО: @obj.Full_name<br /><br />
+                                            Опыт работы: @obj.Experience<br /><br />
+                                            Автомобиль:@obj.Car.Model<br /><br />
+                                        </main>
+                                    </div>
+                                </section>
+                            </div>
+                            <div class="w-100 btn-group" role="group">
+                                @if (User.IsInRole("admin") || User.IsInRole("moderator"))
+                                {
+                                    <a asp-controller="Driver" asp-action="Update" asp-route-Id="@obj.Id" class="btn btn-primary mx-1 ">Update</a>
+                                }
+                                @if (User.IsInRole("admin"))
+                                {
+                                    <a asp-controller="Driver" asp-action="Delete" asp-route-Id="@obj.Id" class="btn btn-danger mx-1">Delete</a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+    else
+    {
+        <p>Нет водил</p>
+    }
+
+</div>
+

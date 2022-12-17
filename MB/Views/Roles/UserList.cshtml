@@ -1,0 +1,17 @@
+﻿@model IEnumerable<MB.Data.User>
+
+<h2>Список пользователей</h2>
+<table class="table table-bordered table-light table-striped table-hover">
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.Email</td>
+            <td>
+                @if (@user.Email != "admin@test.me" && @user.Email != @User.Identity.Name)
+                {
+                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-userid="@user.Id">Права доступа</a>
+                }
+            </td>
+        </tr>
+    }
+</table>
